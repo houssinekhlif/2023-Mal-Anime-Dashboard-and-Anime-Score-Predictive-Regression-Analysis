@@ -15,6 +15,8 @@
 
 **Tools used:** Power Query (M) for ETL, Power Pivot / DAX for the data model and measures, PivotTables/PivotCharts with VBA for dashboard interactivity, Excel's Analysis ToolPak for hypothesis testing, a separate workbook with `LINEST`/dynamic-array formulas for an initial regression prototype, and Python (pandas, statsmodels) for the deeper regression modeling that goes beyond what's practical in native Excel formulas.
 
+**Full dashboard workbook (.xlsm, ~300MB):** [Download from Releases]:https://github.com/houssinekhlif/2023-Mal-Anime-Dashboard-and-Anime-Score-Predictive-Regression-Analysis/releases/tag/v1.0
+
 ---
 
 ## 1. Data Architecture: ETL & Data Model
