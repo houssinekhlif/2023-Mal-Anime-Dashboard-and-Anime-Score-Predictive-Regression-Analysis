@@ -1,0 +1,5 @@
+Method,# Predictors,Adj R2
+"Backward, p<0.05",48,0.6317522938910767
+"Forward, AIC",50,0.631855370084427
+"Backward, AIC",50,0.631855370084427
+"Backward, BIC",40,0.6305363635740711

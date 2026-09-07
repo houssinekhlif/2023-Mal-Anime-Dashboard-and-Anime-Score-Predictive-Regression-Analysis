@@ -1,0 +1,74 @@
+measures:
+*Anime:
+Average_Popularity:=CALCULATE(
+    Average(Anime[Popularity]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Works_Count:=CALCULATE(
+    COUNTROWS(Anime),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Favorites_to_Members_Ratio:=DIVIDE([Total Community Favorites Count], [Total Community Members Count])
+Average Community Score:=CALCULATE(
+    Average(Anime[Score]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Total Community Members Count:=CALCULATE(
+    SUM(Anime[Members]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Total Community Favorites Count:=CALCULATE(
+    SUM(Anime[Favorites]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+
+
+*User:
+average user mean score:=CALCULATE(AVERAGE(User[Mean Score]),User[Mean Score]>0)
+
+*User_Anime_Rating:
+Average True Rating:=CALCULATE(
+    AVERAGE(User_Anime_Rating[rating]),
+    User_Anime_Rating[rating] > 0,
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both))
+Total Watch Count:=CALCULATE(
+    COUNTROWS(User_Anime_Rating),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Total Ratings Count:=CALCULATE(
+    [Total Watch Count],
+    User_Anime_Rating[rating] > 0
+)
+Unrated Count:=[Total Watch Count]-[Total Ratings Count]
+Median True Rating:=CALCULATE(
+    MEDIAN('User_Anime_Rating'[rating]),
+    'User_Anime_Rating'[rating] > 0,
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Watching_Rating_Ratio:=DIVIDE([Total Ratings Count],[Total Watch Count])
+Distinct Users:=CALCULATE(
+    DISTINCTCOUNT('User_Anime_Rating'[user_id]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+Distinct Anime Rated:=CALCULATE(
+    DISTINCTCOUNT('User_Anime_Rating'[anime_id]),
+    CROSSFILTER(Anime_Genres[anime_id], Anime[anime_id], Both),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+
+*Anime_Genres:
+Genres_Count:=CALCULATE(
+    COUNTROWS(Anime_Genres),
+    CROSSFILTER('Anime Studios'[anime_id], Anime[anime_id], Both)
+)
+
+
